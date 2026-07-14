@@ -1,0 +1,59 @@
+﻿@model INFASS_Activity.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!-- Login Section-->
+<section class="page-section" id="Login">
+    <div class="container">
+        <!-- Login Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Login</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Login Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+                
+                <form id="contactForm">
+                    <!-- Name input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                        <label for="name">Username</label>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                    </div>
+                    <!-- Email address input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="password" type="password" placeholder="Password" data-sb-validations="required,email" />
+                        <label for="password">Password</label>
+                        <div class="invalid-feedback" data-sb-feedback="email:required">Password is required.</div>
+                        
+                    </div>
+                    <p class="text-center mt-3">
+                        No account yet?
+
+                        <a asp-controller="Account"
+                           asp-action="Register">
+                            Register
+                        </a>
+                    </p>
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center mb-3">
+                            <div class="fw-bolder">Login Succesful</div>
+                            To activate this form, sign up at
+                            <br />
+                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                        </div>
+                    </div>  
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    <!-- Submit Button-->
+                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
