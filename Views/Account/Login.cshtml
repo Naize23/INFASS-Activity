@@ -4,35 +4,44 @@
     ViewData["Title"] = "Login";
 }
 
-<!-- Login Section-->
 <section class="page-section" id="Login">
     <div class="container">
-        <!-- Login Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Login</h2>
-        <!-- Icon Divider-->
+
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+            Login
+        </h2>
+
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+            </div>
             <div class="divider-custom-line"></div>
         </div>
-        <!-- Login Section Form-->
+
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
-                
-                <form id="contactForm">
-                    <!-- Name input-->
+
+                <form id="Loginform">
+
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                        <label for="name">Username</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <input class="form-control"
+                               id="username"
+                               type="text"
+                               placeholder="Enter your username" />
+
+                        <label for="username">Username</label>
                     </div>
-                    <!-- Email address input-->
+
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="password" type="password" placeholder="Password" data-sb-validations="required,email" />
+                        <input class="form-control"
+                               id="password"
+                               type="password"
+                               placeholder="Password" />
+
                         <label for="password">Password</label>
-                        <div class="invalid-feedback" data-sb-feedback="email:required">Password is required.</div>
-                        
                     </div>
+
                     <p class="text-center mt-3">
                         No account yet?
 
@@ -41,19 +50,45 @@
                             Register
                         </a>
                     </p>
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center mb-3">
-                            <div class="fw-bolder">Login Succesful</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
-                    </div>  
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                    <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
+
+                    <button class="btn btn-primary btn-xl"
+                            type="submit">
+                        Login
+                    </button>
+
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#Loginform").on("submit", function (e) {
+                e.preventDefault();
+
+                const username = $("#username").val().trim();
+                const password = $("#password").val();
+
+                if (username === "" || password === "") {
+                    alert("Please enter your username and password.");
+                    return;
+                }
+
+                console.log("Username:", username);
+                console.log("Password:", password);
+
+                alert(
+                    "Login Successfully!\n\n" +
+                    "Username: " + username + "\n" +
+                    "Password: " + password
+                );
+
+                $("#Loginform")[0].reset();
+            });
+
+        });
+    </script>
+}

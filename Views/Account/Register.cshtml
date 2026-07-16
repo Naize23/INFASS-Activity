@@ -19,59 +19,99 @@
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
 
-                <form id="contactForm">
-                    <!-- Name input-->
+                <form id="Registerform">
+
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                        <label for="name">Full name</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <input class="form-control"
+                               id="fullname"
+                               type="text"
+                               placeholder="Enter your full name" />
+
+                        <label for="fullname">Full name</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                        <label for="name">Username</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <input class="form-control"
+                               id="username"
+                               type="text"
+                               placeholder="Enter your username" />
+
+                        <label for="username">Username</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                        <label for="name">Email</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <input class="form-control"
+                               id="email"
+                               type="email"
+                               placeholder="Enter your email" />
+
+                        <label for="email">Email</label>
                     </div>
-                    <!-- Email address input-->
+
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="password" type="password" placeholder="Password" data-sb-validations="required,email" />
+                        <input class="form-control"
+                               id="password"
+                               type="password"
+                               placeholder="Password" />
+
                         <label for="password">Password</label>
-                        <div class="invalid-feedback" data-sb-feedback="email:required">Password is required.</div>
-
                     </div>
+
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                        <label for="name">Confirm Password</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <input class="form-control"
+                               id="confirmpassword"
+                               type="password"
+                               placeholder="Confirm Password" />
+
+                        <label for="confirmpassword">Confirm Password</label>
                     </div>
 
-                    <p class="text-center mt-3">
-                        Have an account?
-
-                        <a asp-controller="Account"
-                           asp-action="Login">
-                            Login
-                        </a>
-                    </p>
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center mb-3">
-                            <div class="fw-bolder">Login Succesful</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
-                    </div>
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                    <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
+                    <button class="btn btn-primary btn-xl" type="submit">
+                        Register
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 </section>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#Registerform").on("submit", function (e) {
+                e.preventDefault();
+
+                const fullname = $("#fullname").val().trim();
+                const username = $("#username").val().trim();
+                const email = $("#email").val().trim();
+                const password = $("#password").val();
+                const confirmPassword = $("#confirmpassword").val();
+
+                if (
+                    fullname === "" ||
+                    username === "" ||
+                    email === "" ||
+                    password === "" ||
+                    confirmPassword === ""
+                ) {
+                    alert("Please complete all fields.");
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match.");
+                    return;
+                }
+
+                console.log("Full name:", fullname);
+                console.log("Username:", username);
+                console.log("Email:", email);
+
+                alert("Registered successfully!");
+
+                $("#Registerform")[0].reset();
+            });
+
+        });
+    </script>
+}
