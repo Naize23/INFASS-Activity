@@ -2,15 +2,24 @@
 {
     public class User
     {
-        public int UserId { get; set; }
+        public string username { get; set; } = "";
 
-        public string FullName { get; set; }
+        public string fullname { get; set; } = "";
 
-        public string Username { get; set; }
+        public string email { get; set; } = "";
 
-        public string Password { get; set; }
+        public string password { get; set; } = "";
 
-        public string Email { get; set; }
-
+        public string Sql()
+        {
+            return
+                "INSERT INTO User " +
+                "(FullName, Username, Email, Password)\n" +
+                "VALUES('" +
+                fullname + "','" +
+                username + "','" +
+                email + "','" +
+                password + "')";
+        }
     }
 }

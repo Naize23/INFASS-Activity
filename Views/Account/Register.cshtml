@@ -78,41 +78,33 @@
     <script>
         $(document).ready(function () {
 
-            $("#Registerform").on("submit", function(e) {
+            $("#Registerform").submit(function (e) {
                 e.preventDefault();
 
-                const fullname = $("#fullname").val().trim();
-                const username = $("#username").val().trim();
-                const email = $("#email").val().trim();
-                const password = $("#password").val();
-                const confirmPassword = $("#confirmpassword").val();
+                $.ajax({
+                    url: '@Url.Action("Register", "Account")',
+                    type: "POST",
 
-                if (
-                    fullname === "" ||
-                    username === "" ||
-                    email === "" ||
-                    password === "" ||
-                    confirmPassword === ""
-                ) {
-                    alert("Please complete all fields.");
-                    return;
-                }
+                    data: {
+                        fullname: $("#fullname").val(),
+                        username: $("#username").val(),
+                        email: $("#email").val(),
+                        password: $("#password").val()
+                    },
 
-                if (password !== confirmPassword) {
-                    alert("Passwords do not match.");
-                    return;
-                }
+                    success: function (response) {
+                        alert(response);
+                    },
 
-                alert(
-                    "Registered Successfully!\n\n" +
-                    "Full Name: " + fullname + "\n" +
-                    "Username: " + username + "\n" +
-                    "Email: " + email + "\n" +
-                    "Password: " + password + "\n" +
-                    "Confirm Password: " + confirmPassword
-                );
-
-                $("#Registerform")[0].reset();
+                    error: function (xhr) {
+                        alert(
+                            "Error: " +
+                            xhr.status +
+                            "\n" +
+                            xhr.responseText
+                        );
+                    }
+                });
             });
 
         });
