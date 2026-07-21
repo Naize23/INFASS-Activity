@@ -78,7 +78,7 @@
     <script>
         $(document).ready(function () {
 
-            $("#Registerform").on("submit", function (e) {
+            $("#Registerform").on("submit", function(e) {
                 e.preventDefault();
 
                 const fullname = $("#fullname").val().trim();
@@ -103,11 +103,14 @@
                     return;
                 }
 
-                console.log("Full name:", fullname);
-                console.log("Username:", username);
-                console.log("Email:", email);
-
-                alert("Registered successfully!");
+                alert(
+                    "Registered Successfully!\n\n" +
+                    "Full Name: " + fullname + "\n" +
+                    "Username: " + username + "\n" +
+                    "Email: " + email + "\n" +
+                    "Password: " + password + "\n" +
+                    "Confirm Password: " + confirmPassword
+                );
 
                 $("#Registerform")[0].reset();
             });
