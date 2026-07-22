@@ -10,16 +10,45 @@
 
         public string password { get; set; } = "";
 
-        public string Sql()
+        public string Display(string[] fields, string[] values,string tableName)
         {
-            return
-                "INSERT INTO User " +
-                "(FullName, Username, Email, Password)\n" +
-                "VALUES('" +
-                fullname + "','" +
-                username + "','" +
-                email + "','" +
-                password + "')";
+            string val = "";
+            string field = "";
+            for (int i =0; i < fields.Length; i++)
+            {
+               
+                field += fields[i];
+
+                if(i< fields.Length - 1)
+                {
+                    field += ",";
+                }
+            }
+
+            for(int i = 0; i< values.Length; i++)
+            {
+                
+              
+
+                if (int.TryParse(values[i], out _))
+                {
+                    val += values[i];
+                }
+                else
+                {
+                    val += "'" + values[i] + "'";
+                }
+
+                if(i< values.Length - 1)
+                {
+                    val+= ",";
+                }
+            }
+            return "INSERT INTO" + " " + tableName + "(" + field +")"+ "\n" +
+                    "VALUES" + "("+val +")";
+            
         }
+
+       
     }
 }

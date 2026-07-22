@@ -19,10 +19,30 @@ namespace INFASS_Activity.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(string username, string fullname,string email,string password)
         {
+            User user = new User()
+            {
+                username = username,
+                fullname = fullname,
+                email = email,
+                password = password
+
+            };
+
+            string[] fields =
+            {
+                "Username","Fullname","Email","Password"
+            };
+
+            string[] values =
+            {
+                user.username, user.fullname,user.email,user.password
+            };
+
+            string sql = user.Display(fields, values, "User");
         
-            return Content(user.Sql());
+            return Content(sql);
         }
     }
 
