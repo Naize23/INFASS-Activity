@@ -1,4 +1,4 @@
-﻿@model INFASS_Activity.Models.RegisterViewModel
+﻿
 
 @{
     ViewData["Title"] = "Register";
@@ -28,6 +28,15 @@
                                placeholder="Enter your full name" />
 
                         <label for="fullname">Full name</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input class="form-control"
+                               id="tablename"
+                               type="text"
+                               placeholder="Enter your table name" />
+
+                        <label for="tablename">Table Name</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -82,11 +91,12 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: '@Url.Action("Register", "Account")',
+                    url: '@Url.Action("Delete", "Account")',
                     type: "POST",
 
                     data: {
                         fullname: $("#fullname").val(),
+                        tablename: $("#tablename").val(),
                         username: $("#username").val(),
                         email: $("#email").val(),
                         password: $("#password").val()

@@ -44,6 +44,30 @@ namespace INFASS_Activity.Controllers
         
             return Content(sql);
         }
+
+        [HttpPost]
+        public IActionResult SelectAll(string tablename)
+        {
+            User user = new User();
+            string sql = user.SelectAll(tablename);
+            return Content(sql);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(string tablename, string condition)
+        {
+            User user = new User();
+            condition = "UserID = 1;";
+
+            string sql = user.Delete(tablename, condition);
+            return Content(sql);
+        }
+
+        //[HttpPost]
+        //public IActionResult Update(string)
+        //{
+
+        //}
     }
 
 }

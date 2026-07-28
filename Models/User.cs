@@ -2,9 +2,10 @@
 {
     public class User
     {
+        public string fullname { get; set; } = "";
         public string username { get; set; } = "";
 
-        public string fullname { get; set; } = "";
+        public string tablename { get; set; } = "";
 
         public string email { get; set; } = "";
 
@@ -46,9 +47,19 @@
             }
             return "INSERT INTO" + " " + tableName + "(" + field +")"+ "\n" +
                     "VALUES" + "("+val +")";
-            
         }
 
-       
+        public string SelectAll(string TBname) 
+        {
+            string sql = "SELECT * FROM" + " " + TBname;
+            return sql;
+        }
+
+        public string Delete(string TBname, string condition)
+        {
+            string sql = "DELETE * FROM" + " " + TBname + "\n" +
+                         "WHERE" + " " + condition;
+            return sql;
+        }
     }
 }
