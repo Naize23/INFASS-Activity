@@ -63,11 +63,25 @@ namespace INFASS_Activity.Controllers
             return Content(sql);
         }
 
-        //[HttpPost]
-        //public IActionResult Update(string)
-        //{
+        [HttpPost]
+        public IActionResult Update(string tablename, string username, string fullname, string email, string password)
+        {
+            User user = new User();
 
-        //}
+            string[] fields =
+            {
+                "username","fullname","email","password"
+            };
+
+            string[] values =
+            {
+               username, fullname,email,password
+            };
+
+            string sql = user.Update(tablename, fields, values);
+            return Content(sql);
+
+        }
     }
 
 }

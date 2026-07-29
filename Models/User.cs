@@ -61,5 +61,33 @@
                          "WHERE" + " " + condition;
             return sql;
         }
+
+        public string Update(string TBname, string[] fields, string[] values)
+        {
+            string setclause = "";
+
+            for(int i = 0;i< fields.Length;i++)
+            {
+                setclause += fields[i] + " = ";
+                if(int.TryParse(values[i], out _))
+                {
+                    setclause += values[i];
+                }
+                else
+                {
+                    setclause += "'" + values[i] + "'";
+                }
+
+                if(i< fields.Length - 1)
+                {
+                    setclause += ", \n";
+                }
+            }
+
+            string output = "UPDATE " + TBname + "\n" +
+                            "SET " + setclause+ "\n" +
+                            "WHERE StudentID = 1";
+            return output;
+        }
     }
 }
