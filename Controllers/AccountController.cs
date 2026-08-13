@@ -1,10 +1,19 @@
 ﻿using INFASS_Activity.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 
 namespace INFASS_Activity.Controllers
 {
+   
     public class AccountController : Controller
     {
+        private readonly string _connectionString;
+
+        public AccountController(IConfiguration configuration)
+        {
+            _connectionString =
+                configuration.GetConnectionString("DefaultConnection")!;
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -19,17 +28,8 @@ namespace INFASS_Activity.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(string username, string fullname,string email,string password)
+        public IActionResult Register(User user)
         {
-            User user = new User()
-            {
-                username = username,
-                fullname = fullname,
-                email = email,
-                password = password
-
-            };
-
             string[] fields =
             {
                 "Username","Fullname","Email","Password"
@@ -41,8 +41,12 @@ namespace INFASS_Activity.Controllers
             };
 
             string sql = user.Display(fields, values, "User");
-        
-            return Content(sql);
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            using SqlCommand cmd = new SqlCommand(sql, connection);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+
+            return Content("User registered successfully!");
         }
 
         [HttpPost]
