@@ -40,7 +40,9 @@ namespace INFASS_Activity.Controllers
                 user.username, user.fullname,user.email,user.password
             };
 
-            string sql = user.Display(fields, values, "User");
+           string TBname = user.tablename;
+
+            string sql = user.Display(fields, values,TBname );
             using SqlConnection connection = new SqlConnection(_connectionString);
             using SqlCommand cmd = new SqlCommand(sql, connection);
             connection.Open();
